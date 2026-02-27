@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "monorepo": true,
+  "projects": {
+    "api-service": {
+      "type": "application",
+      "root": "apps/api-service",
+      "entryFile": "main",
+      "sourceRoot": "apps/api-service/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/api-service/tsconfig.app.json",
+        "deleteOutDir": true,
+        "assets": [
+          {
+            "include": "proto/**/*",
+            "outDir": "dist"
+          }
+        ],
+        "watchAssets": true
+      }
+    },
+    "merge-service": {
+      "type": "application",
+      "root": "apps/merge-service",
+      "entryFile": "main",
+      "sourceRoot": "apps/merge-service/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/merge-service/tsconfig.app.json",
+        "deleteOutDir": true,
+        "assets": [
+          {
+            "include": "proto/**/*",
+            "outDir": "dist"
+          }
+        ],
+        "watchAssets": true
+      }
+    }
+  }
+}

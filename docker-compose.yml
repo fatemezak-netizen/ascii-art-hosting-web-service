@@ -1,0 +1,42 @@
+version: '3.9'
+
+services:
+  api-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: api_service
+    restart: always
+    environment:
+      MERGE_PACKAGE_URL: '${MERGE_PACKAGE_URL}:${MERGE_PORT}'
+      API_PORT: '${API_PORT}'
+    ports:
+      - '4444:4444'
+    volumes:
+      - data:/app/data
+      - ./proto:/app/proto
+    networks:
+      - app_network
+
+  merge-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.merge
+    container_name: merge_service
+    restart: always
+    environment:
+      MERGE_PORT: '${MERGE_PORT}'
+    volumes:
+      - data:/app/data
+      - ./proto:/app/proto
+    networks:
+      - app_network
+    depends_on:
+      - api-service
+
+volumes:
+  data:
+
+networks:
+  app_network:
+    driver: bridge

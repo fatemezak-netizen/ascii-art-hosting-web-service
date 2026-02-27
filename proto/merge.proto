@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package merge;
+
+service MergeService {
+  rpc MergeImage (MergeRequest) returns (MergeResponse);
+}
+message MergeRequest {
+  string sha256 = 1;
+}
+
+message MergeResponse {
+  bool success = 1;
+  string message = 2;
+}
