@@ -9,7 +9,7 @@ async function bootstrap() {
     options: {
       package: 'merge',
       protoPath: join(process.cwd(), 'proto/merge.proto'),
-      url: `0.0.0.0:${process.env.MERGE_PORT}`,
+      url: `0.0.0.0:${process.env.MERGE_PORT || 5000}`,
     },
   });
 
